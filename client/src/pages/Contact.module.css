@@ -1,0 +1,116 @@
+.main {
+    min-height: 100vh;
+}
+
+.container {
+    padding: 180px 10% 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.infoItem {
+    display: flex;
+    gap: 20px;
+}
+
+.iconWrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(168, 85, 247, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    border: 1px solid var(--glass-border);
+    flex-shrink: 0;
+}
+
+.infoText h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.infoText p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.formCard {
+    padding: 40px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.textArea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submitBtn {
+    height: 54px;
+    font-size: 1rem;
+}
+
+.successMsg {
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--accent);
+    text-align: center;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .contentGrid { grid-template-columns: 1fr; }
+    .title { font-size: 3rem; }
+}

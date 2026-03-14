@@ -1,0 +1,154 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.statCard {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.statIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.trend {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.up { color: var(--accent); }
+.down { color: #f59e0b; }
+
+.chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.chartContainer {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.chartTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.riskList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 10px;
+}
+
+.riskItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+.areaName {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.incidentCount {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.riskBadge {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.high { background: rgba(244, 63, 94, 0.1); color: var(--crimson); }
+.medium { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+@media (max-width: 1024px) {
+    .statsGrid { grid-template-columns: 1fr 1fr; }
+    .chartsGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .statsGrid { grid-template-columns: 1fr; }
+}

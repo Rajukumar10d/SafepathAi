@@ -1,0 +1,155 @@
+.main {
+    min-height: 100vh;
+}
+
+.container {
+    padding: 180px 10% 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.missionSection {
+    margin-bottom: 120px;
+    text-align: center;
+}
+
+.visionGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.visionCard {
+    text-align: left;
+}
+
+.iconWrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: rgba(168, 85, 247, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: var(--primary);
+    border: 1px solid var(--glass-border);
+}
+
+.visionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.visionDesc {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.impactSection {
+    margin-bottom: 120px;
+    padding: 80px;
+    background: radial-gradient(circle at center, rgba(168, 85, 247, 0.05), transparent);
+    border-radius: 40px;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+}
+
+.statGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.statNumber {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.statLabel {
+    color: #94a3b8;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.storySection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+.storyContent h2 {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.storyContent p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.imageBox {
+    height: 400px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.imageBox::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--primary);
+    filter: blur(80px);
+    opacity: 0.2;
+}
+
+@media (max-width: 1024px) {
+    .visionGrid, .statGrid { grid-template-columns: 1fr; gap: 40px; }
+    .storySection { grid-template-columns: 1fr; }
+    .title { font-size: 3rem; }
+    .impactSection { padding: 40px 20px; }
+}

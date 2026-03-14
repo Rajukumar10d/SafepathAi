@@ -6,12 +6,12 @@
 
 .sidebar {
     width: 280px;
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(20px);
+    background: rgba(3, 7, 18, 0.6);
+    backdrop-filter: blur(24px);
     border-right: 1px solid var(--glass-border);
     display: flex;
     flex-direction: column;
-    padding: 30px 20px;
+    padding: 2.5rem 1.5rem;
     height: 100vh;
     position: sticky;
     top: 0;
@@ -20,79 +20,92 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 1.4rem;
+    gap: 14px;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #fff;
-    margin-bottom: 40px;
-    padding: 0 10px;
+    margin-bottom: 3rem;
+    padding: 0 0.75rem;
     text-decoration: none;
 }
 
 .logoIcon {
-    color: var(--primary);
-    filter: drop-shadow(0 0 10px var(--primary-glow));
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 6px;
+    box-shadow: 0 4px 15px var(--primary-glow);
 }
 
 .nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     flex: 1;
 }
 
 .navLink {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 20px;
-    border-radius: 12px;
-    color: #64748b;
+    gap: 14px;
+    padding: 12px 18px;
+    border-radius: 14px;
+    color: #94a3b8;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth);
     text-decoration: none;
 }
 
 .navLink:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
 }
 
 .active {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: #fff !important;
-    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.25);
+    box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+}
+
+.active svg {
+    color: #fff;
 }
 
 .logoutBtn {
-    margin-top: auto;
+    margin-top: 2rem;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 20px;
-    border-radius: 12px;
-    color: var(--crimson);
-    background: rgba(244, 63, 94, 0.05);
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: #fda4af;
+    background: rgba(225, 29, 72, 0.05);
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: var(--transition-bounce);
     cursor: pointer;
-    border: none;
+    border: 1px solid rgba(225, 29, 72, 0.1);
     width: 100%;
-    text-align: left;
 }
 
 .logoutBtn:hover {
     background: var(--crimson);
     color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(225, 29, 72, 0.3);
 }
 
 .mainContent {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 40px;
-    background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.05), transparent 60%);
-    overflow-x: hidden;
+    padding: 0;
+    background: radial-gradient(circle at top right, rgba(147, 51, 234, 0.05), transparent 40%);
 }
 
 .topBar {
@@ -101,13 +114,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
-    margin: -40px -40px 40px -40px;
-    z-index: 10;
+    z-index: 100;
 }
 
 .userProfile {
@@ -115,14 +127,21 @@
     align-items: center;
     gap: 12px;
     background: rgba(255, 255, 255, 0.05);
-    padding: 6px 16px 6px 6px;
-    border-radius: 50px;
+    padding: 8px 20px 8px 8px;
+    border-radius: 100px;
     border: 1px solid var(--glass-border);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.userProfile:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--glass-border-bright);
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     display: flex;
@@ -130,25 +149,25 @@
     justify-content: center;
     color: #fff;
     font-weight: 700;
+    font-size: 0.9rem;
 }
 
 .pageContent {
+    padding: 40px;
+    max-width: 1400px;
     width: 100%;
+    margin: 0 auto;
 }
 
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 80px;
-        padding: 30px 10px;
-    }
-    .logo span, .navLink span, .logoutBtn span, .userProfile span {
-        display: none;
-    }
+@media (max-width: 1100px) {
+    .sidebar { width: 90px; padding: 2.5rem 1rem; }
+    .logo span, .navLink span, .logoutBtn span, .userProfile span { display: none; }
+    .logo { justify-content: center; padding: 0; }
+    .navLink { justify-content: center; padding: 14px; }
+    .logoutBtn { justify-content: center; padding: 14px; }
     .userProfile { padding: 6px; }
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        display: none;
-    }
+    .sidebar { display: none; }
 }

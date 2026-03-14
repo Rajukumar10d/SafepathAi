@@ -11,12 +11,12 @@ export default function About() {
         <div className={styles.main}>
             <PremiumBackground />
             <Navbar />
-            
+
             <div className={styles.container}>
                 <div className={styles.header}>
                     <h1 className={`${styles.title} animate-up shimmer-text`}>A New Era of Personal Safety</h1>
                     <p className={`${styles.subtitle} animate-up`} style={{ animationDelay: '100ms' }}>
-                        SafePath AI is more than just a navigation app. We are building a global protective 
+                        SafePath AI is more than just a navigation app. We are building a global protective
                         shield for women, powered by collective intelligence and neural networks.
                     </p>
                 </div>
@@ -47,7 +47,7 @@ export default function About() {
                             </div>
                             <h3 className={styles.visionTitle}>Predictive Trust</h3>
                             <p className={styles.visionDesc}>
-                                We move beyond reactive mapping. Our AI predicts risk by analyzing 
+                                We move beyond reactive mapping. Our AI predicts risk by analyzing
                                 environmental shifts, street lamp health, and dynamic city data.
                             </p>
                         </GlassCard>
@@ -58,7 +58,7 @@ export default function About() {
                             </div>
                             <h3 className={styles.visionTitle}>Unified Network</h3>
                             <p className={styles.visionDesc}>
-                                A seamless integration of community reports, local safe-havens, 
+                                A seamless integration of community reports, local safe-havens,
                                 and emergency responders in one single, responsive mesh.
                             </p>
                         </GlassCard>
@@ -69,7 +69,7 @@ export default function About() {
                             </div>
                             <h3 className={styles.visionTitle}>Empowerment First</h3>
                             <p className={styles.visionDesc}>
-                                Our mission is to eliminate fear from travel. We believe every 
+                                Our mission is to eliminate fear from travel. We believe every
                                 woman deserves the freedom to move with total confidence.
                             </p>
                         </GlassCard>
@@ -80,18 +80,18 @@ export default function About() {
                     <div className={styles.storyContent}>
                         <h2 className="shimmer-text">Why SafePath AI?</h2>
                         <p>
-                            Traditional navigation systems are built for distance and time. They 
+                            Traditional navigation systems are built for distance and time. They
                             often ignore the most critical variable for millions: **Safety.**
                         </p>
                         <p style={{ marginTop: '20px' }}>
-                            SafePath AI was born out of a hackathon challenge to solve real-world urban 
-                            security gaps. We've combined cutting-edge geospatial technology with 
-                            societal intelligence to create a tool that doesn't just show you the 
+                            SafePath AI was born out of a hackathon challenge to solve real-world urban
+                            security gaps. We've combined cutting-edge geospatial technology with
+                            societal intelligence to create a tool that doesn't just show you the
                             way, but watches your back.
                         </p>
                         <div style={{ marginTop: '40px', display: 'flex', gap: '20px' }}>
                             <div className={styles.iconWrapper} style={{ width: 'auto', padding: '0 20px', height: '50px' }}>
-                                <Users size={18} style={{ marginRight: '10px' }} /> 10k+ Community
+                                <Users size={18} style={{ marginRight: '10px' }} /> 1k Community
                             </div>
                             <div className={styles.iconWrapper} style={{ width: 'auto', padding: '0 20px', height: '50px' }}>
                                 <Zap size={18} style={{ marginRight: '10px' }} /> 50ms Response

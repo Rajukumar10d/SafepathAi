@@ -24,7 +24,7 @@ export default function Contact() {
                 <div className={styles.header}>
                     <h1 className={`${styles.title} animate-up shimmer-text`}>Get in Touch</h1>
                     <p className={`${styles.subtitle} animate-up`} style={{ animationDelay: '100ms' }}>
-                        Whether you're a user, a partner, or just curious about our tech, we'd love to hear from you.
+                        Whether you&apos;re a user, a partner, or just curious about our tech, we&apos;d love to hear from you.
                     </p>
                 </div>
 
@@ -32,33 +32,27 @@ export default function Contact() {
                     <div className={`${styles.infoSection} animate-up`} style={{ animationDelay: '200ms' }}>
                         <div className={styles.infoItem}>
                             <div className={styles.iconWrapper}>
-                                <div className={styles.iconCircle}>
-                                    <Mail size={24} />
-                                </div>
+                                <Mail size={24} />
                             </div>
                             <div className={styles.infoText}>
                                 <h4>Email Us</h4>
-                                <p>contact@safepath.ai</p>
+                                <p>datacoinsoftware@gmail.com</p>
                             </div>
                         </div>
 
                         <div className={styles.infoItem}>
                             <div className={styles.iconWrapper}>
-                                <div className={styles.iconCircle}>
-                                    <Phone size={24} />
-                                </div>
+                                <Phone size={24} />
                             </div>
                             <div className={styles.infoText}>
                                 <h4>Call Support</h4>
-                                <p>+1 (555) 000-SAFE</p>
+                                <p>+91 (9939429446)</p>
                             </div>
                         </div>
 
                         <div className={styles.infoItem}>
                             <div className={styles.iconWrapper}>
-                                <div className={styles.iconCircle}>
-                                    <MapPin size={24} />
-                                </div>
+                                <MapPin size={24} />
                             </div>
                             <div className={styles.infoText}>
                                 <h4>Global HQ</h4>
@@ -66,11 +60,11 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <GlassCard style={{ marginTop: '20px', padding: '30px' }}>
-                            <h4 style={{ color: '#fff', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
-                                <MessageSquare size={20} color="var(--primary)" /> 24/7 Live Support
+                        <GlassCard className={styles.promoCard}>
+                            <h4 className={styles.promoTitle}>
+                                <MessageSquare size={20} className={styles.promoIcon} /> 24/7 Live Support
                             </h4>
-                            <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                            <p className={styles.promoDesc}>
                                 Our automated safety assistants are always online to help you with immediate 
                                 route queries or system feedback.
                             </p>
@@ -117,8 +111,8 @@ export default function Contact() {
 
                             {submitted && (
                                 <div className={styles.successMsg}>
-                                    <CheckCircle size={18} style={{ display: 'inline', marginRight: '6px' }} />
-                                    Your message has been sent successfully.
+                                    <CheckCircle size={18} />
+                                    <span>Your message has been sent successfully.</span>
                                 </div>
                             )}
                         </form>

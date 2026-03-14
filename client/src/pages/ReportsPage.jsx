@@ -60,7 +60,7 @@ export default function ReportsPage() {
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/reports');
+                const res = await fetch('/api/reports');
                 if (!res.ok) throw new Error('Failed to load reports');
                 const data = await res.json();
                 const normalized = data.map((item, idx) => ({
@@ -96,7 +96,7 @@ export default function ReportsPage() {
         };
 
         try {
-            const res = await fetch('http://localhost:5000/api/reports', {
+            const res = await fetch('/api/reports', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(baseReport)

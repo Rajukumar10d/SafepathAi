@@ -1,26 +1,26 @@
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 48px;
 }
 
 .header {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
-    color: #fff;
     margin-bottom: 12px;
 }
 
 .subtitle {
     color: #94a3b8;
     font-size: 1.1rem;
+    max-width: 700px;
 }
 
 .statsGrid {
@@ -31,58 +31,70 @@
 
 .statCard {
     background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 24px;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    transition: var(--transition-smooth);
+}
+
+.statCard:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .statIcon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .statValue {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 800;
     color: #fff;
+    line-height: 1;
 }
 
 .statLabel {
     font-size: 0.85rem;
     color: #64748b;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .trend {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.up { color: var(--accent); }
-.down { color: #f59e0b; }
+.up { color: #10b981; }
+.down { color: #f43f5e; }
 
 .chartsGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 32px;
 }
 
 .chartContainer {
     background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 30px;
-    min-height: 400px;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    padding: 2.5rem;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
 }
@@ -91,43 +103,42 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
 }
 
 .chartTitle {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #fff;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 0;
+    gap: 12px;
 }
 
 .riskList {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-top: 10px;
 }
 
 .riskItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
 }
 
-.areaInfo {
-    display: flex;
-    flex-direction: column;
+.riskItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateX(6px);
 }
 
 .areaName {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #fff;
     display: block;
@@ -135,26 +146,28 @@
 }
 
 .incidentCount {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #64748b;
 }
 
 .riskBadge {
-    padding: 6px 12px;
-    border-radius: 50px;
+    padding: 8px 16px;
+    border-radius: 100px;
     font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.high { background: rgba(244, 63, 94, 0.1); color: var(--crimson); }
-.medium { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.high { background: rgba(244, 63, 94, 0.1); color: #fda4af; }
+.medium { background: rgba(245, 158, 11, 0.1); color: #fbbf24; }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .statsGrid { grid-template-columns: 1fr 1fr; }
     .chartsGrid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .statsGrid { grid-template-columns: 1fr; }
+    .chartContainer { padding: 1.5rem; }
 }

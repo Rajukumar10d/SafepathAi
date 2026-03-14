@@ -1,88 +1,49 @@
 .main {
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .container {
-    padding: 180px 10% 100px;
-    max-width: 1200px;
+    padding: 160px 10% 100px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 120px;
 }
 
 .title {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 800;
     margin-bottom: 24px;
     letter-spacing: -0.04em;
+    line-height: 1.1;
 }
 
 .subtitle {
     color: #94a3b8;
-    font-size: 1.25rem;
-    max-width: 700px;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: 800px;
     margin: 0 auto;
-    line-height: 1.6;
-}
-
-.missionSection {
-    margin-bottom: 120px;
-    text-align: center;
-}
-
-.visionGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.visionCard {
-    text-align: left;
-}
-
-.iconWrapper {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    background: rgba(168, 85, 247, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    color: var(--primary);
-    border: 1px solid var(--glass-border);
-}
-
-.visionTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: #fff;
-}
-
-.visionDesc {
-    color: #64748b;
     line-height: 1.7;
 }
 
 .impactSection {
-    margin-bottom: 120px;
-    padding: 80px;
-    background: radial-gradient(circle at center, rgba(168, 85, 247, 0.05), transparent);
+    margin-bottom: 140px;
+    padding: 80px 40px;
+    background: radial-gradient(circle at center, rgba(147, 51, 234, 0.08), transparent 70%);
     border-radius: 40px;
-    border: 1px solid var(--glass-border);
-    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
 }
 
 .statGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
-    margin-top: 40px;
+    gap: 40px;
 }
 
 .statItem {
@@ -92,44 +53,94 @@
 }
 
 .statNumber {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
     color: #fff;
+    line-height: 1;
 }
 
 .statLabel {
-    color: #94a3b8;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    color: #64748b;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+}
+
+.missionSection {
+    margin-bottom: 140px;
+    text-align: center;
+}
+
+.visionGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+}
+
+.visionCard {
+    padding: 3rem 2.5rem !important;
+}
+
+.iconWrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: rgba(147, 51, 234, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    color: var(--primary);
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    transition: var(--transition-bounce);
+}
+
+.visionCard:hover .iconWrapper {
+    transform: scale(1.1) rotate(-5deg);
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
+}
+
+.visionTitle {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.visionDesc {
+    color: #94a3b8;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 .storySection {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: 80px;
     align-items: center;
-    margin-bottom: 120px;
+    margin-bottom: 140px;
 }
 
 .storyContent h2 {
-    font-size: 2.5rem;
-    margin-bottom: 24px;
-    color: #fff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 32px;
 }
 
 .storyContent p {
-    color: #cbd5e1;
+    color: #94a3b8;
     font-size: 1.1rem;
     line-height: 1.8;
 }
 
 .imageBox {
-    height: 400px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 30px;
-    border: 1px solid var(--glass-border);
+    height: 450px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,19 +148,24 @@
     overflow: hidden;
 }
 
-.imageBox::after {
+.imageBox::before {
     content: '';
     position: absolute;
-    width: 200px;
-    height: 200px;
-    background: var(--primary);
-    filter: blur(80px);
-    opacity: 0.2;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(147, 51, 234, 0.15), transparent 70%);
+    pointer-events: none;
 }
 
-@media (max-width: 1024px) {
-    .visionGrid, .statGrid { grid-template-columns: 1fr; gap: 40px; }
-    .storySection { grid-template-columns: 1fr; }
-    .title { font-size: 3rem; }
-    .impactSection { padding: 40px 20px; }
+@media (max-width: 1100px) {
+    .visionGrid { grid-template-columns: 1fr 1fr; }
+    .statGrid { gap: 24px; }
+}
+
+@media (max-width: 768px) {
+    .container { padding: 120px 5% 80px; }
+    .visionGrid { grid-template-columns: 1fr; }
+    .statGrid { grid-template-columns: 1fr; gap: 48px; }
+    .storySection { grid-template-columns: 1fr; gap: 60px; }
+    .imageBox { height: 350px; }
+    .impactSection { padding: 60px 20px; }
 }

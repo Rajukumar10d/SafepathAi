@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import {
     ShieldAlert,
@@ -10,13 +11,22 @@ import {
     ClipboardList
 } from 'lucide-react';
 import styles from './DashboardLayout.module.css';
-import Chatbot from '../components/Chatbot';
+import Chatbot from './Chatbot';
+import { useAuth } from '../context/AuthContext';
 
 export default function DashboardLayout() {
     const location = useLocation();
     const navigate = useNavigate();
+    const { user, logout, loading } = useAuth();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            navigate('/login');
+        }
+    }, [user, loading, navigate]);
 
     const handleLogout = () => {
+        logout();
         navigate('/login');
     };
 
@@ -28,6 +38,10 @@ export default function DashboardLayout() {
         { name: 'Analytics', path: '/dashboard/analytics', icon: BarChart3 },
         { name: 'Emergency', path: '/dashboard/emergency', icon: AlertTriangle },
     ];
+
+    if (loading) {
+        return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#0a0b10', color: 'white' }}>Loading Dashboard...</div>;
+    }
 
     return (
         <div className={styles.dashboardLayout}>
@@ -63,8 +77,10 @@ export default function DashboardLayout() {
             <main className={styles.mainContent}>
                 <header className={styles.topBar}>
                     <div className={styles.userProfile}>
-                        <div className={styles.avatar}>J</div>
-                        <span>Jane Doe</span>
+                        <div className={styles.avatar}>
+                            {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+                        </div>
+                        <span>{user?.name || 'Guest User'}</span>
                     </div>
                 </header>
 

@@ -6,13 +6,6 @@ const User = require('../models/User');
 
 // Register
 router.post('/register', async (req, res) => {
-    if (!req.isDbConnected) {
-        return res.json({ 
-            token: 'demo-token-' + Date.now(), 
-            user: { id: 'demo-user', name: req.body.name || 'Demo User', email: req.body.email },
-            message: 'Running in Demo Mode (Mock Account created)'
-        });
-    }
     try {
         const { name, email, password } = req.body;
         
@@ -38,13 +31,6 @@ router.post('/register', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
-    if (!req.isDbConnected) {
-        return res.json({ 
-            token: 'demo-token-' + Date.now(), 
-            user: { id: 'demo-user', name: 'SafeTraveler Admin', email: req.body.email },
-            message: 'Running in Demo Mode (Mock Login successful)'
-        });
-    }
     try {
         const { email, password } = req.body;
 

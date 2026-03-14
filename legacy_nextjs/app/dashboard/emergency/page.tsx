@@ -18,7 +18,7 @@ const HELPLINES = [
 
 const SAFETY_STEPS = [
     { icon: '🏃', title: 'Move to Safety', desc: 'Go to a well-lit, populated area immediately. Avoid isolated spots.' },
-    { icon: '📞', title: 'Call for Help', desc: 'Call police (100) or women helpline (1091). Stay on the line.' },
+    { icon: '📞', title: 'Call for Help', desc: 'Call police (<a href="tel:100" style="color: #3b82f6; text-decoration: underline;">100</a>) or women helpline (<a href="tel:1091" style="color: #8b5cf6; text-decoration: underline;">1091</a>). Stay on the line.' },
     { icon: '📍', title: 'Share Location', desc: 'Send your live location to trusted family/friends right away.' },
     { icon: '🔊', title: 'Make Noise', desc: "Shout, use your alarm, blow a whistle — attract people's attention." },
     { icon: '🤝', title: 'Trust Bystanders', desc: 'Ask someone nearby for help. Enter a shop, restaurant or bank.' },
@@ -306,7 +306,7 @@ export default function Emergency() {
                                 <div className={styles.tipNumber}>{i + 1}</div>
                                 <div className={styles.tipEmoji}>{step.icon}</div>
                                 <h3 className={styles.tipTitle}>{step.title}</h3>
-                                <p className={styles.tipDesc}>{step.desc}</p>
+                                <p className={styles.tipDesc} dangerouslySetInnerHTML={{ __html: step.desc }} />
                             </div>
                         ))}
                     </div>

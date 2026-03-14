@@ -1,10 +1,10 @@
 .container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 48px;
 }
 
 .header {
@@ -12,9 +12,8 @@
 }
 
 .title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
-    color: #fff;
     margin-bottom: 12px;
 }
 
@@ -24,108 +23,120 @@
 }
 
 .formCard {
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
     width: 100%;
+    padding: 3rem !important;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
 }
 
 .inputGroup {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .inputGroup label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #cbd5e1;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #64748b;
     margin-left: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .glassSelect {
     background: var(--input-bg);
     border: 1px solid var(--glass-border);
-    color: var(--foreground);
-    padding: 14px 20px;
-    border-radius: 12px;
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 14px;
     font-size: 1rem;
     appearance: none;
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 15px center;
+    background-position: right 20px center;
     background-size: 18px;
     outline: none;
+    transition: var(--transition-smooth);
+}
+
+.glassSelect:focus {
+    border-color: var(--primary);
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
 }
 
 .submitBtn {
     width: 100%;
-    height: 54px;
+    height: 60px;
     font-size: 1.1rem;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .resultCard {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
     width: 100%;
-    border: 1px solid var(--primary-glow);
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    padding: 3rem !important;
 }
 
 .nightWarning {
     background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
-    padding: 12px 20px;
-    border-radius: 12px;
+    color: #fbbf24;
+    padding: 16px 24px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
+    gap: 14px;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
+    border: 1px solid rgba(245, 158, 11, 0.1);
 }
 
 .resultHeader {
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin-bottom: 40px;
+    gap: 48px;
+    margin-bottom: 48px;
 }
 
 .scoreCircle {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
 }
 
 .circularChart {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .circleBg {
     fill: none;
     stroke: rgba(255, 255, 255, 0.05);
-    stroke-width: 3;
+    stroke-width: 3.5;
 }
 
 .circle {
     fill: none;
-    stroke-width: 3;
+    stroke-width: 3.5;
     stroke-linecap: round;
-    transition: stroke-dasharray 1s ease;
+    transition: stroke-dasharray 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .safe { stroke: var(--accent); }
-.medium { stroke: #f59e0b; }
-.danger { stroke: var(--crimson); }
+.medium { stroke: #fbbf24; }
+.danger { stroke: #f43f5e; }
 
 .percentage {
     fill: #fff;
@@ -138,70 +149,74 @@
 .statusInfo {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .statusRow {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 16px;
 }
 
 .statusLabel {
     color: #64748b;
     font-weight: 600;
     font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .levelBadge {
-    padding: 4px 12px;
-    border-radius: 50px;
+    padding: 6px 14px;
+    border-radius: 100px;
     font-size: 0.75rem;
     font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.levelLow { background: rgba(16, 185, 129, 0.1); color: var(--accent); }
-.levelMedium { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-.levelHigh { background: rgba(244, 63, 94, 0.1); color: var(--crimson); }
+.levelLow { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.levelMedium { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.levelHigh { background: rgba(225, 29, 72, 0.15); color: #fda4af; }
 
 .statusText {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 800;
     margin: 0;
+    color: #fff;
 }
 
 .aiExplanation {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;
-    padding: 24px;
-    margin-bottom: 30px;
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .explanationTitle {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 24px;
     color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .explanationList {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    gap: 16px;
 }
 
 .explanationItem {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 16px;
     color: #94a3b8;
     line-height: 1.6;
+    font-size: 1rem;
 }
 
 .dot {
@@ -209,30 +224,34 @@
     height: 6px;
     border-radius: 50%;
     background: var(--primary);
-    margin-top: 8px;
+    margin-top: 10px;
     flex-shrink: 0;
+    box-shadow: 0 0 10px var(--primary-glow);
 }
 
 .recommendation {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background: rgba(168, 85, 247, 0.05);
-    border-radius: 16px;
-    border-left: 4px solid var(--primary);
-    margin-bottom: 30px;
+    gap: 24px;
+    padding: 24px;
+    background: rgba(147, 51, 234, 0.08);
+    border-radius: 20px;
+    border-left: 5px solid var(--primary);
+    margin-bottom: 40px;
 }
 
 .recText {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .recLabel {
     font-size: 0.8rem;
-    color: #64748b;
-    font-weight: 600;
+    color: #94a3b8;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .recValue {
@@ -241,17 +260,8 @@
     font-size: 1.1rem;
 }
 
-.spinner {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 @media (max-width: 768px) {
-    .resultHeader { flex-direction: column; text-align: center; }
+    .resultHeader { flex-direction: column; text-align: center; gap: 24px; }
     .statusRow { justify-content: center; }
-    .title { font-size: 2.2rem; }
+    .formCard, .resultCard { padding: 2rem 1.5rem !important; }
 }

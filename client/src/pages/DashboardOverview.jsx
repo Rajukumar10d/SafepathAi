@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Map, Clock } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
+import { useAuth } from '../context/AuthContext';
 import styles from './DashboardOverview.module.css';
 
 export default function DashboardOverview() {
@@ -10,11 +11,13 @@ export default function DashboardOverview() {
         { id: 3, source: 'Mehrangarh Fort', dest: 'Clock Tower, Jodhpur', time: '7:15 PM', status: 'Safe', risk: 10 },
     ];
 
+    const { user } = useAuth();
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
                 <h1 className={`${styles.welcome} animate-up`}>
-                    SafePath <span className="shimmer-text">Dashboard</span>
+                    Welcome, {user?.name?.split(' ')[0] || 'Safetraveler'}!
                 </h1>
                 <p className={`${styles.subtitle} animate-up`} style={{ animationDelay: '100ms' }}>
                     Real-time monitoring and predictive safety analysis active.

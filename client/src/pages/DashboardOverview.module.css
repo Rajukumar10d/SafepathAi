@@ -1,99 +1,101 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
     padding-bottom: 4rem;
 }
 
 .header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .welcome {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     color: #fff;
-}
-
-.welcome span {
-    color: var(--primary);
+    letter-spacing: -0.03em;
 }
 
 .subtitle {
     color: #94a3b8;
     font-size: 1.1rem;
+    max-width: 600px;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    padding: 2.5rem !important;
 }
 
 .cardHeader {
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
+    gap: 16px;
 }
 
 .cardTitle {
     margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
 }
 
 .cardIcon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: rgba(168, 85, 247, 0.1);
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(147, 51, 234, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary);
+    border: 1px solid rgba(147, 51, 234, 0.2);
 }
 
 .cardDesc {
     color: #94a3b8;
     line-height: 1.7;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    flex-grow: 1;
 }
 
 .actionBtn {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 12px;
     text-decoration: none;
+    padding: 14px !important;
 }
 
 .historyList {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 16px;
+    margin-top: 24px;
 }
 
 .historyItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
-    transition: all 0.3s ease;
+    padding: 24px 32px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
 }
 
 .historyItem:hover {
-    background: rgba(139, 92, 246, 0.05);
-    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
     transform: translateX(8px);
 }
 
@@ -104,41 +106,41 @@
 }
 
 .routeLoc {
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: #f8fafc;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
 }
 
 .routeTime {
     font-size: 0.9rem;
     color: #64748b;
+    font-weight: 500;
 }
 
 .statusSafe {
-    color: var(--accent);
-    background: rgba(16, 185, 129, 0.1);
-    padding: 6px 14px;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.15);
+    padding: 8px 18px;
     border-radius: 100px;
     font-size: 0.85rem;
-    font-weight: 700;
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .statusMedium {
-    color: #f59e0b;
-    background: rgba(245, 158, 11, 0.1);
-    padding: 6px 14px;
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.15);
+    padding: 8px 18px;
     border-radius: 100px;
     font-size: 0.85rem;
-    font-weight: 700;
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 @media (max-width: 768px) {
-    .welcome {
-        font-size: 2rem;
-    }
-    .grid {
-        grid-template-columns: 1fr;
-    }
+    .container { gap: 3rem; }
+    .card { padding: 1.5rem !important; }
+    .historyItem { padding: 1.5rem; }
 }

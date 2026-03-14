@@ -1,78 +1,80 @@
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 48px;
 }
 
 .header {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
-    color: #fff;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .headerIcon {
-    color: #ef4444;
+    color: #f43f5e;
+    filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.4));
 }
 
 .subtitle {
     color: #94a3b8;
     font-size: 1.1rem;
+    max-width: 700px;
 }
 
 .tabBar {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     background: rgba(255, 255, 255, 0.03);
-    padding: 6px;
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
+    padding: 8px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     width: fit-content;
 }
 
 .tab {
-    padding: 10px 24px;
-    border-radius: 12px;
-    background: transparent;
-    border: none;
+    padding: 12px 24px;
+    border-radius: 14px;
     color: #64748b;
     font-weight: 600;
     font-size: 0.95rem;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
+    gap: 12px;
+    transition: var(--transition-bounce);
 }
 
 .activeTab {
     background: rgba(255, 255, 255, 0.08);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.activeTab svg {
+    color: var(--primary);
 }
 
 .sosGrid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1.2fr;
     gap: 40px;
 }
 
 .sosCard {
     background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
-    padding: 60px 40px;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(244, 63, 94, 0.1);
+    border-radius: 40px;
+    padding: 5rem 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,8 +91,8 @@
 
 .sosWrapper {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,13 +100,13 @@
 }
 
 .sosButton {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ef4444, #991b1b);
-    border: 8px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #f43f5e, #be123c);
+    border: 8px solid rgba(255, 255, 255, 0.15);
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 800;
     display: flex;
     flex-direction: column;
@@ -112,22 +114,22 @@
     justify-content: center;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.4);
-    transition: all 0.3s ease;
+    box-shadow: 0 20px 50px rgba(244, 63, 94, 0.5);
+    transition: var(--transition-bounce);
 }
 
 .sosButton:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
 
 .sosActive {
-    background: #ef4444;
-    animation: sosPulse 1s infinite alternate;
+    background: #f43f5e;
+    animation: sosPulse 0.8s infinite alternate;
 }
 
 @keyframes sosPulse {
-    from { box-shadow: 0 0 20px #ef4444; }
-    to { box-shadow: 0 0 60px #ef4444, 0 0 100px rgba(239, 68, 68, 0.4); }
+    from { transform: scale(1); box-shadow: 0 0 30px #f43f5e; }
+    to { transform: scale(1.05); box-shadow: 0 0 70px #f43f5e, 0 0 120px rgba(244, 63, 94, 0.4); }
 }
 
 .pulseRing {
@@ -135,8 +137,8 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: rgba(239, 68, 68, 0.2);
-    animation: ringPulse 2s infinite;
+    background: rgba(244, 63, 94, 0.2);
+    animation: ringPulse 2.5s infinite;
 }
 
 .pulseRing2 {
@@ -144,19 +146,19 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: rgba(239, 68, 68, 0.1);
-    animation: ringPulse 2s infinite 1s;
+    background: rgba(244, 63, 94, 0.1);
+    animation: ringPulse 2.5s infinite 1.2s;
 }
 
 @keyframes ringPulse {
-    0% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(1.6); opacity: 0; }
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
 }
 
 .sosTimer {
-    font-size: 1.2rem;
-    margin-top: 8px;
-    opacity: 0.8;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    font-weight: 700;
 }
 
 .quickActions {
@@ -170,42 +172,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 20px;
-    border-radius: 20px;
+    gap: 12px;
+    padding: 24px;
+    border-radius: 24px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    transition: all 0.3s ease;
-    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition-bounce);
     color: #fff;
 }
 
 .quickBtn span {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: #94a3b8;
 }
 
 .quickBtn:hover {
     background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .contactsCard {
     background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
-    padding: 30px;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    padding: 3rem;
 }
 
 .sectionHeading {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 24px;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .contactsList {
@@ -217,194 +220,164 @@
 .contactItem {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.contactItem:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .contactAvatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
 .contactInfo {
     flex: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .contactName {
     color: #fff;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
 }
 
 .contactRelation {
     color: #64748b;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .contactStatus {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 0.75rem;
     font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 50px;
+    padding: 6px 14px;
+    border-radius: 100px;
     background: rgba(255, 255, 255, 0.05);
     color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .notified {
-    background: rgba(16, 185, 129, 0.2);
+    background: rgba(16, 185, 129, 0.15);
     color: #10b981;
 }
 
-.sending {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-    animation: blink 1s infinite alternate;
-}
-
-@keyframes blink {
-    from { opacity: 1; }
-    to { opacity: 0.5; }
-}
-
 .addContactForm {
-    margin-top: 24px;
-    padding-top: 24px;
+    margin-top: 2rem;
+    padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.contactInput {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    outline: none;
-}
-
-.contactInput:focus {
-    border-color: var(--primary);
-}
-
-.contactDeleteBtn {
-    background: transparent;
-    border: none;
-    color: #64748b;
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.contactDeleteBtn:hover {
-    color: #ef4444;
 }
 
 .helplinesGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
 }
 
 .helplineCard {
     background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 24px;
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    transition: var(--transition-bounce);
 }
 
 .helplineCard:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .helplineIcon {
-    width: 70px;
-    height: 70px;
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    color: #fff;
 }
 
 .helplineName {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .helplineDesc {
-    color: #64748b;
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
 }
 
 .helplineNumber {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 .tipsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
 }
 
 .tipCard {
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 2.5rem;
     position: relative;
     overflow: hidden;
 }
 
 .tipNumber {
     position: absolute;
-    top: -20px;
+    top: -10px;
     right: -10px;
-    font-size: 6rem;
+    font-size: 7rem;
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.02);
+    pointer-events: none;
 }
 
 .tipEmoji {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 24px;
 }
 
 .tipTitle {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: #fff;
     margin-bottom: 12px;
@@ -412,26 +385,25 @@
 
 .tipDesc {
     color: #94a3b8;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 .disclaimer {
-    margin-top: 40px;
+    margin-top: 60px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: #64748b;
-    font-size: 0.9rem;
+    gap: 12px;
+    color: #475569;
+    font-size: 0.95rem;
     justify-content: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .sosGrid { grid-template-columns: 1fr; }
-    .helplinesGrid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
-    .helplinesGrid { grid-template-columns: 1fr; }
-    .title { font-size: 2.2rem; }
+    .sosCard, .contactsCard { padding: 3rem 1.5rem; }
+    .quickActions { grid-template-columns: 1fr; }
 }

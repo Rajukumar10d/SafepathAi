@@ -31,7 +31,7 @@ export default function Chatbot() {
             const lowInput = input.toLowerCase();
 
             if (lowInput.includes('help') || lowInput.includes('emergency')) {
-                response = "Emergency protocol active in Rajasthan. Use the SOS button or contact Rajasthan Women Helpline at 1091.";
+                response = "Emergency protocol active in Rajasthan. Use the SOS button or contact Rajasthan Women Helpline at <a href='tel:1091' style='color: #8b5cf6; text-decoration: underline;'>1091</a>.";
             } else if (lowInput.includes('dark') || lowInput.includes('light')) {
                 response = "I've flagged dark spots in Jaipur and Udaipur. Please report new ones in the 'Reports' section.";
             } else if (lowInput.includes('safe') || lowInput.includes('route')) {
@@ -67,7 +67,11 @@ export default function Chatbot() {
                     <div className={styles.chatMessages} ref={scrollRef}>
                         {messages.map((msg) => (
                             <div key={msg.id} className={`${styles.message} ${styles[msg.sender]}`}>
-                                {msg.text}
+                                {msg.sender === 'bot' ? (
+                                    <span dangerouslySetInnerHTML={{ __html: msg.text }} />
+                                ) : (
+                                    msg.text
+                                )}
                             </div>
                         ))}
                         {isTyping && (

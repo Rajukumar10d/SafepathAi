@@ -1,0 +1,292 @@
+{
+  "Agra": {
+    "counts": {
+      "RAPE": 15,
+      "KIDNAPPING_AND_ABDUCTION": 24,
+      "ASSAULT_ON_WOMEN": 61,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 28
+    },
+    "risk_score": 438
+  },
+  "Ahmedabad": {
+    "counts": {
+      "RAPE": 51,
+      "KIDNAPPING_AND_ABDUCTION": 42,
+      "ASSAULT_ON_WOMEN": 124,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 68
+    },
+    "risk_score": 999
+  },
+  "Bangalore": {
+    "counts": {
+      "RAPE": 81,
+      "KIDNAPPING_AND_ABDUCTION": 98,
+      "ASSAULT_ON_WOMEN": 219,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 104
+    },
+    "risk_score": 1766
+  },
+  "Bhopal": {
+    "counts": {
+      "RAPE": 14,
+      "KIDNAPPING_AND_ABDUCTION": 19,
+      "ASSAULT_ON_WOMEN": 42,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 15
+    },
+    "risk_score": 317
+  },
+  "Chennai": {
+    "counts": {
+      "RAPE": 71,
+      "KIDNAPPING_AND_ABDUCTION": 65,
+      "ASSAULT_ON_WOMEN": 97,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 51
+    },
+    "risk_score": 1059
+  },
+  "Delhi": {
+    "counts": {
+      "RAPE": 151,
+      "KIDNAPPING_AND_ABDUCTION": 145,
+      "ASSAULT_ON_WOMEN": 267,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 148
+    },
+    "risk_score": 2580
+  },
+  "Faridabad": {
+    "counts": {
+      "RAPE": 9,
+      "KIDNAPPING_AND_ABDUCTION": 7,
+      "ASSAULT_ON_WOMEN": 25,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 10
+    },
+    "risk_score": 178
+  },
+  "Ghaziabad": {
+    "counts": {
+      "RAPE": 21,
+      "KIDNAPPING_AND_ABDUCTION": 23,
+      "ASSAULT_ON_WOMEN": 39,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 24
+    },
+    "risk_score": 386
+  },
+  "Hyderabad": {
+    "counts": {
+      "RAPE": 68,
+      "KIDNAPPING_AND_ABDUCTION": 65,
+      "ASSAULT_ON_WOMEN": 149,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 74
+    },
+    "risk_score": 1269
+  },
+  "Indore": {
+    "counts": {
+      "RAPE": 16,
+      "KIDNAPPING_AND_ABDUCTION": 18,
+      "ASSAULT_ON_WOMEN": 45,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 20
+    },
+    "risk_score": 347
+  },
+  "Jaipur": {
+    "counts": {
+      "RAPE": 46,
+      "KIDNAPPING_AND_ABDUCTION": 39,
+      "ASSAULT_ON_WOMEN": 72,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 38
+    },
+    "risk_score": 716
+  },
+  "Kalyan": {
+    "counts": {
+      "RAPE": 11,
+      "KIDNAPPING_AND_ABDUCTION": 8,
+      "ASSAULT_ON_WOMEN": 17,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 7
+    },
+    "risk_score": 159
+  },
+  "Kanpur": {
+    "counts": {
+      "RAPE": 29,
+      "KIDNAPPING_AND_ABDUCTION": 35,
+      "ASSAULT_ON_WOMEN": 54,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 26
+    },
+    "risk_score": 525
+  },
+  "Kolkata": {
+    "counts": {
+      "RAPE": 72,
+      "KIDNAPPING_AND_ABDUCTION": 68,
+      "ASSAULT_ON_WOMEN": 147,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 75
+    },
+    "risk_score": 1298
+  },
+  "Lucknow": {
+    "counts": {
+      "RAPE": 37,
+      "KIDNAPPING_AND_ABDUCTION": 37,
+      "ASSAULT_ON_WOMEN": 80,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 36
+    },
+    "risk_score": 681
+  },
+  "Ludhiana": {
+    "counts": {
+      "RAPE": 23,
+      "KIDNAPPING_AND_ABDUCTION": 25,
+      "ASSAULT_ON_WOMEN": 30,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 13
+    },
+    "risk_score": 344
+  },
+  "Meerut": {
+    "counts": {
+      "RAPE": 12,
+      "KIDNAPPING_AND_ABDUCTION": 15,
+      "ASSAULT_ON_WOMEN": 25,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 15
+    },
+    "risk_score": 240
+  },
+  "Mumbai": {
+    "counts": {
+      "RAPE": 125,
+      "KIDNAPPING_AND_ABDUCTION": 124,
+      "ASSAULT_ON_WOMEN": 231,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 114
+    },
+    "risk_score": 2156
+  },
+  "Nagpur": {
+    "counts": {
+      "RAPE": 24,
+      "KIDNAPPING_AND_ABDUCTION": 20,
+      "ASSAULT_ON_WOMEN": 65,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 28
+    },
+    "risk_score": 479
+  },
+  "Nashik": {
+    "counts": {
+      "RAPE": 15,
+      "KIDNAPPING_AND_ABDUCTION": 5,
+      "ASSAULT_ON_WOMEN": 20,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 7
+    },
+    "risk_score": 176
+  },
+  "Patna": {
+    "counts": {
+      "RAPE": 25,
+      "KIDNAPPING_AND_ABDUCTION": 14,
+      "ASSAULT_ON_WOMEN": 46,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 24
+    },
+    "risk_score": 391
+  },
+  "Pune": {
+    "counts": {
+      "RAPE": 47,
+      "KIDNAPPING_AND_ABDUCTION": 52,
+      "ASSAULT_ON_WOMEN": 107,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 53
+    },
+    "risk_score": 923
+  },
+  "Rajkot": {
+    "counts": {
+      "RAPE": 5,
+      "KIDNAPPING_AND_ABDUCTION": 9,
+      "ASSAULT_ON_WOMEN": 14,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 7
+    },
+    "risk_score": 124
+  },
+  "Srinagar": {
+    "counts": {
+      "RAPE": 6,
+      "KIDNAPPING_AND_ABDUCTION": 11,
+      "ASSAULT_ON_WOMEN": 14,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 6
+    },
+    "risk_score": 134
+  },
+  "Surat": {
+    "counts": {
+      "RAPE": 37,
+      "KIDNAPPING_AND_ABDUCTION": 24,
+      "ASSAULT_ON_WOMEN": 66,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 34
+    },
+    "risk_score": 581
+  },
+  "Thane": {
+    "counts": {
+      "RAPE": 21,
+      "KIDNAPPING_AND_ABDUCTION": 20,
+      "ASSAULT_ON_WOMEN": 36,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 21
+    },
+    "risk_score": 356
+  },
+  "Varanasi": {
+    "counts": {
+      "RAPE": 5,
+      "KIDNAPPING_AND_ABDUCTION": 11,
+      "ASSAULT_ON_WOMEN": 17,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 10
+    },
+    "risk_score": 150
+  },
+  "Vasai": {
+    "counts": {
+      "RAPE": 12,
+      "KIDNAPPING_AND_ABDUCTION": 8,
+      "ASSAULT_ON_WOMEN": 19,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 8
+    },
+    "risk_score": 173
+  },
+  "Visakhapatnam": {
+    "counts": {
+      "RAPE": 21,
+      "KIDNAPPING_AND_ABDUCTION": 18,
+      "ASSAULT_ON_WOMEN": 32,
+      "INSULT_TO_MODESTY": 0,
+      "CRUELTY_BY_HUSBAND": 14
+    },
+    "risk_score": 315
+  }
+}

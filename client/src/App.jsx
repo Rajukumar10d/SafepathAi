@@ -20,14 +20,16 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard/*" element={<DashboardLayout />}>
           <Route index element={<DashboardOverview />} />
           <Route path="predict" element={<SafetyPredict />} />
           <Route path="map" element={<LiveMap />} />
           <Route path="reports" element={<ReportsPage />} />
           <Route path="analytics" element={<AnalyticsDashboard />} />
           <Route path="emergency" element={<EmergencyDashboard />} />
+          <Route path="*" element={<DashboardOverview />} />
         </Route>
+        <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );

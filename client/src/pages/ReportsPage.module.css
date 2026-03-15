@@ -15,10 +15,11 @@
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     margin-bottom: 12px;
+    color: var(--foreground);
 }
 
 .subtitle {
-    color: #94a3b8;
+    color: #4b5563;
     font-size: 1.1rem;
     max-width: 700px;
 }
@@ -27,13 +28,14 @@
     margin-top: 12px;
     padding: 14px 20px;
     border-radius: 12px;
-    background: rgba(147, 51, 234, 0.05);
-    border: 1px solid rgba(147, 51, 234, 0.1);
-    color: #e5e7eb;
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    color: #dc2626;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
     gap: 12px;
+    font-weight: 600;
 }
 
 .grid {
@@ -80,10 +82,10 @@
     align-items: center;
     gap: 12px;
     padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 14px;
-    color: #94a3b8;
+    color: #64748b;
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
@@ -97,10 +99,10 @@
 }
 
 .activeCategory {
-    background: rgba(147, 51, 234, 0.1) !important;
+    background: #fef2f2 !important;
     border-color: var(--primary) !important;
-    color: #fff !important;
-    box-shadow: 0 8px 20px rgba(147, 51, 234, 0.15);
+    color: var(--primary) !important;
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.1);
 }
 
 .activeCategory svg {
@@ -108,10 +110,10 @@
 }
 
 .input, .textarea {
-    background: var(--input-bg);
-    border: 1px solid var(--glass-border);
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
     border-radius: 14px;
-    color: #fff;
+    color: var(--foreground);
     padding: 16px 20px;
     font-size: 1rem;
     outline: none;
@@ -121,8 +123,8 @@
 
 .input:focus, .textarea:focus {
     border-color: var(--primary);
-    background: rgba(15, 23, 42, 0.8);
-    box-shadow: 0 0 0 4px rgba(147, 51, 234, 0.1);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
 }
 
 .textarea {
@@ -151,17 +153,17 @@
 }
 
 .reportCard {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 24px;
     padding: 2.5rem;
     transition: var(--transition-smooth);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .reportCard:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: #fafafa;
+    border-color: #d1d5db;
     transform: scale(1.01);
 }
 
@@ -177,7 +179,7 @@
     align-items: center;
     gap: 10px;
     font-weight: 700;
-    color: #fff;
+    color: var(--foreground);
     font-size: 1.1rem;
     max-width: 70%;
 }

@@ -24,7 +24,7 @@
 }
 
 .subtitle {
-    color: #94a3b8;
+    color: #4b5563;
     font-size: clamp(1rem, 2vw, 1.25rem);
     max-width: 700px;
     margin: 0 auto;
@@ -54,7 +54,7 @@
 }
 
 .infoItem:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: #fdf2f2;
     transform: translateX(10px);
 }
 
@@ -62,24 +62,24 @@
     width: 56px;
     height: 56px;
     border-radius: 16px;
-    background: rgba(147, 51, 234, 0.1);
+    background: #fef2f2;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    border: 1px solid rgba(147, 51, 234, 0.2);
+    border: 1px solid #fee2e2;
     flex-shrink: 0;
 }
 
 .infoText h4 {
     font-size: 1.1rem;
-    color: #fff;
+    color: var(--foreground);
     font-weight: 700;
     margin-bottom: 4px;
 }
 
 .infoText p {
-    color: #94a3b8;
+    color: #4b5563;
     font-size: 1rem;
 }
 
@@ -102,7 +102,7 @@
 .inputGroup label {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #64748b;
+    color: #4b5563;
     margin-left: 4px;
     text-transform: uppercase;
     letter-spacing: 0.05em;

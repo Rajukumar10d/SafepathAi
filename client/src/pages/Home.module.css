@@ -34,12 +34,12 @@
   margin-bottom: 24px;
   max-width: 1100px;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: var(--foreground);
 }
 
 .subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #94a3b8;
+  color: #4b5563;
   max-width: 750px;
   margin-bottom: 48px;
   line-height: 1.7;
@@ -64,7 +64,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  color: #64748b;
+  color: #9ca3af;
   text-transform: uppercase;
 }
 
@@ -79,12 +79,12 @@
 .logoItem {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #334155;
+  color: #6b7280;
   transition: var(--transition-smooth);
 }
 
 .logoItem:hover {
-  color: #94a3b8;
+  color: var(--primary);
   transform: translateY(-2px);
 }
 
@@ -103,6 +103,9 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 3rem 2.5rem;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .featureIcon {
@@ -112,29 +115,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(147, 51, 234, 0.1);
+  background: rgba(220, 38, 38, 0.05);
   color: var(--primary);
   margin-bottom: 28px;
   transition: var(--transition-bounce);
-  border: 1px solid rgba(147, 51, 234, 0.2);
+  border: 1px solid rgba(220, 38, 38, 0.1);
 }
 
 .featureCard:hover .featureIcon {
   background: var(--primary);
   color: white;
   transform: rotate(-5deg) scale(1.1);
-  box-shadow: 0 12px 30px rgba(147, 51, 234, 0.4);
+  box-shadow: 0 12px 30px var(--primary-glow);
 }
 
 .featureTitle {
   font-size: 1.6rem;
   margin-bottom: 1rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--foreground);
 }
 
 .featureDesc {
-  color: #94a3b8;
+  color: #4b5563;
   line-height: 1.7;
   font-size: 1rem;
 }

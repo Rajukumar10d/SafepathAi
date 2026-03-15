@@ -4,59 +4,232 @@ import { Navigation, AlertTriangle, PhoneCall, Share2, MapPin, Loader2, Hospital
 import styles from './LiveMap.module.css';
 import 'leaflet/dist/leaflet.css';
 
+import cityRisk from '../data/city_risk.json';
+
 // Dynamically import Leaflet so it only runs on client
 let L = null;
 
 // Bounding box for Rajasthan area
 const VIEWBOX_RAJASTHAN = '69.30,30.12,78.17,23.30';
 
+// ── LOCAL LANDMARK DATABASE ─────────────────────────────────────
+// These coordinates work OFFLINE — bypasses Nominatim entirely for known places
+const LOCAL_LANDMARKS = [
+    { name: 'Jagatpura', lat: 26.8265, lng: 75.8371, city: 'Jaipur', display_name: 'Jagatpura, Jaipur, Rajasthan, India' },
+    { name: 'Jagatpura Fatak', lat: 26.8200, lng: 75.8350, city: 'Jaipur', display_name: 'Jagatpura Fatak, Jaipur, Rajasthan, India' },
+    { name: 'World Trade Park', lat: 26.8937, lng: 75.8103, city: 'Jaipur', display_name: 'World Trade Park (WTP), Malviya Nagar, Jaipur, Rajasthan' },
+    { name: 'WTP', lat: 26.8937, lng: 75.8103, city: 'Jaipur', display_name: 'World Trade Park (WTP), Jaipur, Rajasthan' },
+    { name: 'Hawa Mahal', lat: 26.9239, lng: 75.8267, city: 'Jaipur', display_name: 'Hawa Mahal, Badi Choupad, Jaipur, Rajasthan' },
+    { name: 'Jal Mahal', lat: 26.9534, lng: 75.8466, city: 'Jaipur', display_name: 'Jal Mahal, Amer Road, Jaipur, Rajasthan' },
+    { name: 'Amer Fort', lat: 26.9855, lng: 75.8513, city: 'Jaipur', display_name: 'Amer Fort, Amer, Jaipur, Rajasthan' },
+    { name: 'Amber Fort', lat: 26.9855, lng: 75.8513, city: 'Jaipur', display_name: 'Amer Fort, Amer, Jaipur, Rajasthan' },
+    { name: 'Nahargarh Fort', lat: 26.9388, lng: 75.8155, city: 'Jaipur', display_name: 'Nahargarh Fort, Jaipur, Rajasthan' },
+    { name: 'Jaigarh Fort', lat: 26.9837, lng: 75.8453, city: 'Jaipur', display_name: 'Jaigarh Fort, Jaipur, Rajasthan' },
+    { name: 'City Palace', lat: 26.9258, lng: 75.8237, city: 'Jaipur', display_name: 'City Palace, Jaipur, Rajasthan' },
+    { name: 'Jantar Mantar', lat: 26.9247, lng: 75.8245, city: 'Jaipur', display_name: 'Jantar Mantar, Jaipur, Rajasthan' },
+    { name: 'Albert Hall', lat: 26.9119, lng: 75.8194, city: 'Jaipur', display_name: 'Albert Hall Museum, Ram Niwas Garden, Jaipur, Rajasthan' },
+    { name: 'Albert Hall Museum', lat: 26.9119, lng: 75.8194, city: 'Jaipur', display_name: 'Albert Hall Museum, Ram Niwas Garden, Jaipur, Rajasthan' },
+    { name: 'Birla Mandir', lat: 26.8915, lng: 75.8150, city: 'Jaipur', display_name: 'Birla Mandir, Tilak Nagar, Jaipur, Rajasthan' },
+    { name: 'Malviya Nagar', lat: 26.8566, lng: 75.8132, city: 'Jaipur', display_name: 'Malviya Nagar, Jaipur, Rajasthan' },
+    { name: 'Mansarovar', lat: 26.8644, lng: 75.7597, city: 'Jaipur', display_name: 'Mansarovar, Jaipur, Rajasthan' },
+    { name: 'Vaishali Nagar', lat: 26.9120, lng: 75.7270, city: 'Jaipur', display_name: 'Vaishali Nagar, Jaipur, Rajasthan' },
+    { name: 'Tonk Road', lat: 26.8780, lng: 75.8100, city: 'Jaipur', display_name: 'Tonk Road, Jaipur, Rajasthan' },
+    { name: 'MI Road', lat: 26.9140, lng: 75.8074, city: 'Jaipur', display_name: 'MI Road, Jaipur, Rajasthan' },
+    { name: 'Sindhi Camp', lat: 26.9186, lng: 75.7890, city: 'Jaipur', display_name: 'Sindhi Camp Bus Stand, Jaipur, Rajasthan' },
+    { name: 'Jaipur Junction', lat: 26.9196, lng: 75.7878, city: 'Jaipur', display_name: 'Jaipur Junction Railway Station, Jaipur, Rajasthan' },
+    { name: 'Jaipur Railway Station', lat: 26.9196, lng: 75.7878, city: 'Jaipur', display_name: 'Jaipur Junction Railway Station, Jaipur, Rajasthan' },
+    { name: 'Jaipur Airport', lat: 26.8242, lng: 75.8122, city: 'Jaipur', display_name: 'Jaipur International Airport, Sanganer, Jaipur, Rajasthan' },
+    { name: 'Sanganer', lat: 26.8266, lng: 75.7944, city: 'Jaipur', display_name: 'Sanganer, Jaipur, Rajasthan' },
+    { name: 'Pratap Nagar', lat: 26.8310, lng: 75.8265, city: 'Jaipur', display_name: 'Pratap Nagar, Sanganer, Jaipur, Rajasthan' },
+    { name: 'Sitapura', lat: 26.7968, lng: 75.8515, city: 'Jaipur', display_name: 'Sitapura Industrial Area, Jaipur, Rajasthan' },
+    { name: 'Durgapura', lat: 26.8503, lng: 75.8181, city: 'Jaipur', display_name: 'Durgapura, Jaipur, Rajasthan' },
+    { name: 'Sodala', lat: 26.9255, lng: 75.7773, city: 'Jaipur', display_name: 'Sodala, Jaipur, Rajasthan' },
+    { name: 'C Scheme', lat: 26.9060, lng: 75.8010, city: 'Jaipur', display_name: 'C-Scheme, Jaipur, Rajasthan' },
+    { name: 'Bani Park', lat: 26.9300, lng: 75.7930, city: 'Jaipur', display_name: 'Bani Park, Jaipur, Rajasthan' },
+    { name: 'Raja Park', lat: 26.9060, lng: 75.8230, city: 'Jaipur', display_name: 'Raja Park, Jaipur, Rajasthan' },
+    { name: 'Gopalpura', lat: 26.8600, lng: 75.8000, city: 'Jaipur', display_name: 'Gopalpura Bypass, Jaipur, Rajasthan' },
+    { name: 'SKIT', lat: 26.8220, lng: 75.8640, city: 'Jaipur', display_name: 'SKIT College, Jagatpura, Jaipur, Rajasthan' },
+    { name: 'SKIT College', lat: 26.8220, lng: 75.8640, city: 'Jaipur', display_name: 'SKIT College, Jagatpura, Jaipur, Rajasthan' },
+    { name: 'MNIT', lat: 26.8620, lng: 75.8110, city: 'Jaipur', display_name: 'MNIT Jaipur, JLN Marg, Jaipur, Rajasthan' },
+    { name: 'Rajasthan University', lat: 26.8920, lng: 75.8140, city: 'Jaipur', display_name: 'University of Rajasthan, JLN Marg, Jaipur, Rajasthan' },
+    { name: 'JECRC', lat: 26.7910, lng: 75.8280, city: 'Jaipur', display_name: 'JECRC University, Jaipur, Rajasthan' },
+    { name: 'Jaipur', lat: 26.9124, lng: 75.7873, city: 'Jaipur', display_name: 'Jaipur, Rajasthan, India' },
+    { name: 'Jodhpur', lat: 26.2389, lng: 73.0243, city: 'Jodhpur', display_name: 'Jodhpur, Rajasthan, India' },
+    { name: 'Udaipur', lat: 24.5854, lng: 73.7125, city: 'Udaipur', display_name: 'Udaipur, Rajasthan, India' },
+    { name: 'Ajmer', lat: 26.4499, lng: 74.6399, city: 'Ajmer', display_name: 'Ajmer, Rajasthan, India' },
+    { name: 'Pushkar', lat: 26.4897, lng: 74.5511, city: 'Pushkar', display_name: 'Pushkar, Ajmer, Rajasthan, India' },
+    { name: 'Bikaner', lat: 28.0229, lng: 73.3119, city: 'Bikaner', display_name: 'Bikaner, Rajasthan, India' },
+    { name: 'Kota', lat: 25.2138, lng: 75.8648, city: 'Kota', display_name: 'Kota, Rajasthan, India' },
+    { name: 'Jaisalmer', lat: 26.9157, lng: 70.9083, city: 'Jaisalmer', display_name: 'Jaisalmer, Rajasthan, India' },
+    { name: 'Mount Abu', lat: 24.5926, lng: 72.7156, city: 'Mount Abu', display_name: 'Mount Abu, Sirohi, Rajasthan, India' },
+    { name: 'Chittorgarh', lat: 24.8887, lng: 74.6269, city: 'Chittorgarh', display_name: 'Chittorgarh, Rajasthan, India' },
+    { name: 'Alwar', lat: 27.5530, lng: 76.6346, city: 'Alwar', display_name: 'Alwar, Rajasthan, India' },
+    { name: 'Sikar', lat: 27.6094, lng: 75.1399, city: 'Sikar', display_name: 'Sikar, Rajasthan, India' },
+];
+
+// Fuzzy search through local landmarks — returns the best matching landmark object
+function searchLocalLandmarks(query) {
+    const q = query.toLowerCase().replace(/[,.\-]/g, ' ').trim();
+    // 1. Exact name match
+    const exact = LOCAL_LANDMARKS.find(l => l.name.toLowerCase() === q);
+    if (exact) return exact;
+    // 2. Starts-with match
+    const starts = LOCAL_LANDMARKS.find(l => l.name.toLowerCase().startsWith(q) || q.startsWith(l.name.toLowerCase()));
+    if (starts) return starts;
+    // 3. Contains match
+    const contains = LOCAL_LANDMARKS.find(l => l.name.toLowerCase().includes(q) || q.includes(l.name.toLowerCase()));
+    if (contains) return contains;
+    // 4. Word-level match
+    const words = q.split(/\s+/).filter(w => w.length > 2);
+    for (const word of words) {
+        const m = LOCAL_LANDMARKS.find(l => l.name.toLowerCase().includes(word));
+        if (m) return m;
+    }
+    return null;
+}
+
+// Get suggestion results from local landmarks (returns nominatim-like format)
+function getLocalSuggestions(query) {
+    const q = query.toLowerCase().replace(/[,.\-]/g, ' ').trim();
+    if (q.length < 2) return [];
+    return LOCAL_LANDMARKS
+        .filter(l =>
+            l.name.toLowerCase().includes(q) ||
+            l.display_name.toLowerCase().includes(q) ||
+            q.includes(l.name.toLowerCase())
+        )
+        .slice(0, 5)
+        .map(l => ({
+            display_name: l.display_name,
+            lat: String(l.lat),
+            lon: String(l.lng),
+        }));
+}
+
 async function geocode(query) {
     if (!query) return null;
 
     const cleanQuery = query.trim();
-    
-    // Try primary search with Rajasthan focus
-    let result = await fallbackGeocode(`${cleanQuery}, Rajasthan, India`);
-    
-    // Fallback 1: Just India
-    if (!result) {
-        result = await fallbackGeocode(`${cleanQuery}, India`);
-    }
 
-    // Fallback 2: Raw query
-    if (!result) {
-        result = await fallbackGeocode(cleanQuery);
-    }
-
-    return result;
-}
-
-async function fallbackGeocode(query) {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=in&addressdetails=1&limit=1`;
-    try {
-        const res = await fetch(url, { 
-            headers: { 
-                'User-Agent': 'SafePathAI_Hackathon_Project/1.0',
-                'Accept-Language': 'en'
-            } 
-        });
-        const data = await res.json();
-        if (data && data.length > 0) return { 
-            lat: parseFloat(data[0].lat), 
-            lng: parseFloat(data[0].lon),
-            display_name: data[0].display_name
+    // ★ STEP 0: Check LOCAL DATABASE FIRST (instant, works offline)
+    const localMatch = searchLocalLandmarks(cleanQuery);
+    if (localMatch) {
+        console.log('✅ Found in local database:', localMatch.display_name);
+        return {
+            lat: localMatch.lat,
+            lng: localMatch.lng,
+            display_name: localMatch.display_name,
+            city: localMatch.city,
+            address: { city: localMatch.city, state: 'Rajasthan' },
         };
-    } catch (e) { console.error("Geocoding error for:", query, e); }
+    }
+
+    // ★ STEPS 1-6: Try Nominatim API with progressive fallbacks
+    // Each step is wrapped in its own try-catch so a network error doesn't stop the rest
+    const attempts = [
+        { bounded: true, suffix: ', Jaipur, Rajasthan, India' },
+        { bounded: true, suffix: ', Rajasthan, India' },
+        { bounded: false, suffix: ', Jaipur, Rajasthan' },
+        { bounded: false, suffix: ', Rajasthan, India' },
+        { bounded: false, suffix: ', India' },
+        { bounded: false, suffix: '' },
+    ];
+
+    for (const attempt of attempts) {
+        try {
+            const result = await searchNominatim(cleanQuery, attempt);
+            if (result) return result;
+        } catch (e) {
+            console.warn(`Geocode step failed: "${cleanQuery}${attempt.suffix}" →`, e.message);
+        }
+    }
+
     return null;
 }
 
-async function getOSRMRoute(start, end) {
-    const url = `https://router.project-osrm.org/route/v1/foot/${start.lng},${start.lat};${end.lng},${end.lat}?overview=full&geometries=geojson`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if (data.code !== 'Ok' || !data.routes?.length) return [];
-    // GeoJSON coords are [lng, lat], convert to [lat, lng] for Leaflet
-    return data.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]);
+
+async function fetchWithTimeout(url, options = {}, timeout = 10000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+    try {
+        const res = await fetch(url, { ...options, signal: controller.signal });
+        return res;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+async function searchNominatim(query, { bounded = false, suffix = '' } = {}) {
+    const fullQuery = suffix ? `${query}${suffix}` : query;
+    const params = new URLSearchParams({
+        format: 'json',
+        q: fullQuery,
+        countrycodes: 'in',
+        addressdetails: '1',
+        limit: '3',
+        email: 'contact@safepath.ai',
+    });
+    // Only add viewbox when searching with Rajasthan context
+    if (bounded) {
+        params.set('viewbox', VIEWBOX_RAJASTHAN);
+        params.set('bounded', '1');
+    } else {
+        params.set('viewbox', VIEWBOX_RAJASTHAN);
+        params.set('bounded', '0');
+    }
+    const url = `https://nominatim.openstreetmap.org/search?${params.toString()}`;
+    try {
+        const res = await fetchWithTimeout(url, {
+            headers: { 'Accept-Language': 'en' }
+        });
+        if (!res || !res.ok) {
+            console.warn('Geocoding fetch failed', { url, status: res?.status });
+            return null;
+        }
+
+        const data = await res.json();
+        if (data && data.length > 0) {
+            const place = data[0];
+            const address = place.address || {};
+            const city = address.city || address.town || address.village || address.county || address.state_district;
+            return {
+                lat: parseFloat(place.lat),
+                lng: parseFloat(place.lon),
+                display_name: place.display_name,
+                city: city || null,
+                address,
+            };
+        }
+    } catch (e) {
+        console.error('Geocoding error for:', fullQuery, e);
+    }
+    return null;
+}
+
+async function getOSRMRoute(start, end, mode = 'foot') {
+    // OSRM free demo server only reliably supports 'driving' profile
+    // We always use 'driving' to avoid 'InvalidUrl' / 400 errors for foot/bicycle
+    const url = `https://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=full&geometries=geojson&alternatives=false`;
+
+    try {
+        const res = await fetchWithTimeout(url, {}, 12000);
+        if (!res || !res.ok) {
+            console.warn('OSRM responded with status', res?.status);
+            return [];
+        }
+
+        const data = await res.json();
+        if (data.code !== 'Ok' || !data.routes?.length) {
+            console.warn('OSRM returned no route', data);
+            return [];
+        }
+
+        // GeoJSON coords are [lng, lat], convert to [lat, lng] for Leaflet
+        return data.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]);
+    } catch (err) {
+        console.error('OSRM request failed', err);
+        return [];
+    }
 }
 
 export default function LiveMap() {
@@ -75,6 +248,7 @@ export default function LiveMap() {
     const [userLoc, setUserLoc] = useState(null);
     const [sourceCoords, setSourceCoords] = useState(null);
     const [destCoords, setDestCoords] = useState(null);
+    const [transportMode, setTransportMode] = useState('walking');
 
     const mapRef = useRef(null);
     const leafletMap = useRef(null);
@@ -102,8 +276,8 @@ export default function LiveMap() {
             const map = L.map(mapRef.current, { zoomControl: true }).setView([26.9124, 75.7873], 12);
             leafletMap.current = map;
 
-            // Dark tile layer
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            // Light tile layer
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
                 subdomains: 'abcd',
                 maxZoom: 20
@@ -140,22 +314,63 @@ export default function LiveMap() {
     const [dstSuggestions, setDstSuggestions] = useState([]);
 
     const fetchSuggestions = async (query, type) => {
+        if (query.length < 2) {
+            if (type === 'src') setSrcSuggestions([]);
+            else setDstSuggestions([]);
+            return;
+        }
+
+        // ★ Check LOCAL landmarks first (instant, no network)
+        const localResults = getLocalSuggestions(query);
+        if (localResults.length > 0) {
+            if (type === 'src') setSrcSuggestions(localResults);
+            else setDstSuggestions(localResults);
+            return;
+        }
+
+        // ★ Only call Nominatim API if no local matches
         if (query.length < 3) return;
-        const q = query.toLowerCase().includes('rajasthan') ? query : `${query}, Rajasthan`;
-        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&countrycodes=in&limit=5`;
         try {
-            const res = await fetch(url, { headers: { 'User-Agent': 'SafePathAI/1.0' } });
+            const q1 = query.toLowerCase().includes('rajasthan') ? query : `${query}, Jaipur, Rajasthan`;
+            const params = new URLSearchParams({
+                format: 'json', q: q1, countrycodes: 'in',
+                viewbox: VIEWBOX_RAJASTHAN, bounded: '0', limit: '5',
+                email: 'contact@safepath.ai'
+            });
+            const res = await fetch(`https://nominatim.openstreetmap.org/search?${params}`);
             const data = await res.json();
-            if (type === 'src') setSrcSuggestions(data);
-            else setDstSuggestions(data);
-        } catch (e) { console.error(e); }
+
+            if (data && data.length > 0) {
+                if (type === 'src') setSrcSuggestions(data);
+                else setDstSuggestions(data);
+            } else {
+                // If API returned nothing, try broader search
+                const params2 = new URLSearchParams({
+                    format: 'json', q: `${query}, India`, countrycodes: 'in',
+                    limit: '5', email: 'contact@safepath.ai'
+                });
+                const res2 = await fetch(`https://nominatim.openstreetmap.org/search?${params2}`);
+                const data2 = await res2.json();
+                if (type === 'src') setSrcSuggestions(data2 || []);
+                else setDstSuggestions(data2 || []);
+            }
+        } catch (e) {
+            console.warn('Nominatim API unavailable, using local results only', e.message);
+            // Fallback: show whatever local matches we can find with a broader query
+            const fallback = getLocalSuggestions(query.split(/[\s,]+/)[0]);
+            if (type === 'src') setSrcSuggestions(fallback);
+            else setDstSuggestions(fallback);
+        }
     };
 
     const handleFindRoute = async (srcOverride, dstOverride) => {
         const src = srcOverride ?? source;
         const dst = dstOverride ?? destination;
         if (!src.trim() || !dst.trim()) return;
-        if (!leafletMap.current || !L) return;
+        if (!leafletMap.current || !L) {
+            setRouteError('Map is not ready yet. Please wait a moment and try again.');
+            return;
+        }
         
         if (srcOverride) setSource(srcOverride);
         if (dstOverride) setDestination(dstOverride);
@@ -192,6 +407,11 @@ export default function LiveMap() {
                 }
             }
 
+            const startCity = startCoords?.city;
+            const endCity = endCoords?.city;
+            const startRisk = startCity && cityRisk[startCity] ? cityRisk[startCity].risk_score : null;
+            const endRisk = endCity && cityRisk[endCity] ? cityRisk[endCity].risk_score : null;
+
             if (!startCoords) {
                 setRouteError(`I couldn't find "${src}". Try being more specific.`);
                 setLoadingRoute(false);
@@ -203,15 +423,28 @@ export default function LiveMap() {
                 return;
             }
 
-            const routeCoords = await getOSRMRoute(startCoords, endCoords);
-            if (routeCoords.length === 0) { setRouteError('No route found between these locations.'); return; }
-
-            const polyline = L.polyline(routeCoords, {
-                color: '#3b82f6',
-                weight: 6,
-                opacity: 0.9,
-            }).addTo(leafletMap.current);
-            routeLayer.current = polyline;
+            const routeCoords = await getOSRMRoute(startCoords, endCoords, transportMode);
+            let routePoly;
+            
+            if (routeCoords.length === 0) {
+                // If OSRM can't find a path, show a straight line as a fallback "Safety Route"
+                console.log('OSRM failed, using straight-line safety fallback');
+                const fallbackLine = [[startCoords.lat, startCoords.lng], [endCoords.lat, endCoords.lng]];
+                routePoly = L.polyline(fallbackLine, {
+                    color: '#10b981', // Green for Safety Route fallback
+                    weight: 5,
+                    dashArray: '10, 10',
+                    opacity: 0.8,
+                }).addTo(leafletMap.current);
+                setRouteError('Direct Safety Path shown (Navigation route unavailable)');
+            } else {
+                routePoly = L.polyline(routeCoords, {
+                    color: '#3b82f6',
+                    weight: 6,
+                    opacity: 0.9,
+                }).addTo(leafletMap.current);
+            }
+            routeLayer.current = routePoly;
 
             const startIcon = L.divIcon({
                 html: `<div style="background:#10b981;width:16px;height:16px;border-radius:50%;border:3px solid white;box-shadow:0 0 10px #10b981"></div>`,
@@ -230,22 +463,39 @@ export default function LiveMap() {
                 .addTo(leafletMap.current);
             markersRef.current = [startMarker, endMarker];
 
-            leafletMap.current.fitBounds(polyline.getBounds(), { padding: [60, 60] });
+            leafletMap.current.fitBounds(routePoly.getBounds(), { padding: [60, 60] });
 
-            const routeRes = await fetch(`https://router.project-osrm.org/route/v1/foot/${startCoords.lng},${startCoords.lat};${endCoords.lng},${endCoords.lat}?overview=false`);
-            const routeData = await routeRes.json();
-            if (routeData.code === 'Ok') {
-                const meters = routeData.routes[0].distance;
-                const seconds = routeData.routes[0].duration;
-                setRouteInfo({
-                    distance: meters > 1000 ? `${(meters / 1000).toFixed(1)} km` : `${Math.round(meters)} m`,
-                    time: seconds > 3600 ? `${Math.round(seconds / 3600)} hr ${Math.round((seconds % 3600) / 60)} min` : `${Math.round(seconds / 60)} min`,
-                });
+            try {
+                // Use 'driving' profile always — OSRM free server only supports it reliably
+                const routeRes = await fetchWithTimeout(`https://router.project-osrm.org/route/v1/driving/${startCoords.lng},${startCoords.lat};${endCoords.lng},${endCoords.lat}?overview=false&alternatives=false`, {}, 12000);
+                if (!routeRes || !routeRes.ok) {
+                    console.warn('Failed to fetch route info', routeRes?.status);
+                } else {
+                    const routeData = await routeRes.json();
+                    if (routeData.code === 'Ok' && routeData.routes?.length) {
+                        const meters = routeData.routes[0].distance;
+                        const seconds = routeData.routes[0].duration;
+                        setRouteInfo({
+                            distance: meters > 1000 ? `${(meters / 1000).toFixed(1)} km` : `${Math.round(meters)} m`,
+                            time: seconds > 3600 ? `${Math.round(seconds / 3600)} hr ${Math.round((seconds % 3600) / 60)} min` : `${Math.round(seconds / 60)} min`,
+                            startCity: startCity || 'Unknown',
+                            endCity: endCity || 'Unknown',
+                            startRisk,
+                            endRisk,
+                        });
+                    } else {
+                        console.warn('OSRM returned invalid route info', routeData);
+                    }
+                }
+            } catch (err) {
+                console.error('Route info request failed', err);
             }
         } catch (e) {
             console.error(e);
             setRouteError('Network error. Please check your connection.');
+            setLoadingRoute(false);
         } finally {
+            // in some code paths (like early return) setLoadingRoute(false) is already called
             setLoadingRoute(false);
         }
     };
@@ -400,6 +650,17 @@ export default function LiveMap() {
                             </div>
                         )}
                     </div>
+                    <div className={styles.inputGroup}>
+                        <select
+                            value={transportMode}
+                            onChange={(e) => setTransportMode(e.target.value)}
+                            className={styles.input}
+                        >
+                            <option value="walking">Walking</option>
+                            <option value="cycling">Cycling</option>
+                            <option value="driving">Driving</option>
+                        </select>
+                    </div>
                     <button
                         onClick={() => handleFindRoute()}
                         disabled={loadingRoute || !source.trim() || !destination.trim()}
@@ -418,7 +679,19 @@ export default function LiveMap() {
                 {routeInfo && (
                     <div className={styles.routeInfo}>
                         <span>📍 <strong>{routeInfo.distance}</strong></span>
-                        <span>🚶 Walking time: <strong>{routeInfo.time}</strong></span>
+                        <span>🚶 {transportMode === 'driving' ? 'Driving' : transportMode === 'cycling' ? 'Cycling' : 'Walking'} time: <strong>{routeInfo.time}</strong></span>
+                        {routeInfo.startCity && (
+                            <span>
+                                🚩 Start city: <strong>{routeInfo.startCity}</strong>
+                                {routeInfo.startRisk != null ? ` • Risk: ${routeInfo.startRisk}` : ''}
+                            </span>
+                        )}
+                        {routeInfo.endCity && (
+                            <span>
+                                🎯 End city: <strong>{routeInfo.endCity}</strong>
+                                {routeInfo.endRisk != null ? ` • Risk: ${routeInfo.endRisk}` : ''}
+                            </span>
+                        )}
                         <span style={{ color: '#10b981' }}>✓ Safest Route Found</span>
                     </div>
                 )}

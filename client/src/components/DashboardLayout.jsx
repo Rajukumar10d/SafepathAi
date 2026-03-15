@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import {
     ShieldAlert,
@@ -8,7 +8,9 @@ import {
     AlertTriangle,
     LogOut,
     BarChart3,
-    ClipboardList
+    ClipboardList,
+    Menu,
+    X
 } from 'lucide-react';
 import styles from './DashboardLayout.module.css';
 import Chatbot from './Chatbot';
@@ -17,6 +19,7 @@ import { useAuth } from '../context/AuthContext';
 export default function DashboardLayout() {
     const location = useLocation();
     const navigate = useNavigate();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { user, logout, loading } = useAuth();
 
     useEffect(() => {
@@ -45,8 +48,25 @@ export default function DashboardLayout() {
 
     return (
         <div className={styles.dashboardLayout}>
-            <aside className={styles.sidebar}>
-                <Link to="/" className={styles.logo}>
+            {/* Mobile menu toggle */}
+            <button
+                className={styles.mobileMenuBtn}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+            >
+                {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+
+            {/* Overlay backdrop for mobile */}
+            {mobileMenuOpen && (
+                <div
+                    className={styles.mobileOverlay}
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+            )}
+
+            <aside className={`${styles.sidebar} ${mobileMenuOpen ? styles.sidebarOpen : ''}`}>
+                <Link to="/" className={styles.logo} onClick={() => setMobileMenuOpen(false)}>
                     <ShieldAlert className={styles.logoIcon} size={24} />
                     <span>SafePath AI</span>
                 </Link>
@@ -60,6 +80,7 @@ export default function DashboardLayout() {
                                 key={item.name}
                                 to={item.path}
                                 className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                                onClick={() => setMobileMenuOpen(false)}
                             >
                                 <Icon size={20} />
                                 <span>{item.name}</span>

@@ -24,7 +24,7 @@
 }
 
 .subtitle {
-    color: #94a3b8;
+    color: #4b5563;
     font-size: clamp(1rem, 2vw, 1.25rem);
     max-width: 800px;
     margin: 0 auto;
@@ -34,10 +34,9 @@
 .impactSection {
     margin-bottom: 140px;
     padding: 80px 40px;
-    background: radial-gradient(circle at center, rgba(147, 51, 234, 0.08), transparent 70%);
+    background: radial-gradient(circle at center, rgba(220, 38, 38, 0.03), transparent 70%);
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    border: 1px solid #f3f4f6;
 }
 
 .statGrid {
@@ -55,7 +54,7 @@
 .statNumber {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
-    color: #fff;
+    color: var(--foreground);
     line-height: 1;
 }
 
@@ -87,13 +86,13 @@
     width: 64px;
     height: 64px;
     border-radius: 18px;
-    background: rgba(147, 51, 234, 0.1);
+    background: #fef2f2;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 28px;
     color: var(--primary);
-    border: 1px solid rgba(147, 51, 234, 0.2);
+    border: 1px solid #fee2e2;
     transition: var(--transition-bounce);
 }
 
@@ -108,11 +107,11 @@
     font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 16px;
-    color: #fff;
+    color: var(--foreground);
 }
 
 .visionDesc {
-    color: #94a3b8;
+    color: #4b5563;
     line-height: 1.7;
     font-size: 1rem;
 }
@@ -131,16 +130,16 @@
 }
 
 .storyContent p {
-    color: #94a3b8;
+    color: #4b5563;
     font-size: 1.1rem;
     line-height: 1.8;
 }
 
 .imageBox {
     height: 450px;
-    background: rgba(255, 255, 255, 0.02);
+    background: #f9fafb;
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid #e5e7eb;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -152,7 +151,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(147, 51, 234, 0.15), transparent 70%);
+    background: radial-gradient(circle at center, rgba(220, 38, 38, 0.05), transparent 70%);
     pointer-events: none;
 }
 

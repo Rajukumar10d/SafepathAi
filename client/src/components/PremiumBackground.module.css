@@ -6,7 +6,7 @@
   height: 100vh;
   z-index: -1;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, #030712 0%, #000 100%);
+  background: #ffffff;
 }
 
 .blob {
@@ -14,26 +14,26 @@
   width: 60vw;
   height: 60vw;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.12;
+  filter: blur(120px);
+  opacity: 0.03; /* Extremely subtle */
   animation: move 25s infinite alternate ease-in-out;
 }
 
 .blob1 {
-  background: var(--primary);
+  background: #dc2626;
   top: -20%;
   left: -10%;
 }
 
 .blob2 {
-  background: var(--secondary);
+  background: #991b1b;
   bottom: -20%;
   right: -10%;
   animation-delay: -7s;
 }
 
 .blob3 {
-  background: #38bdf8;
+  background: #f87171;
   top: 40%;
   left: 30%;
   width: 40vw;
@@ -46,15 +46,13 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
 }
 
 @keyframes move {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  33% { transform: translate(10vw, 10vh) scale(1.1) rotate(120deg); }
-  66% { transform: translate(-5vw, 20vh) scale(0.9) rotate(240deg); }
-  100% { transform: translate(5vw, -5vh) scale(1) rotate(360deg); }
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(10vw, 5vh) scale(1.1); }
 }

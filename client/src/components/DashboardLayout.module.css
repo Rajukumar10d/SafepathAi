@@ -1,14 +1,13 @@
 .dashboardLayout {
     display: flex;
     min-height: 100vh;
-    background: #000;
+    background: #f9fafb;
 }
 
 .sidebar {
     width: 280px;
-    background: rgba(3, 7, 18, 0.6);
-    backdrop-filter: blur(24px);
-    border-right: 1px solid var(--glass-border);
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;
     padding: 2.5rem 1.5rem;
@@ -23,7 +22,7 @@
     gap: 14px;
     font-size: 1.5rem;
     font-weight: 800;
-    color: #fff;
+    color: var(--foreground);
     margin-bottom: 3rem;
     padding: 0 0.75rem;
     text-decoration: none;
@@ -55,15 +54,15 @@
     gap: 14px;
     padding: 12px 18px;
     border-radius: 14px;
-    color: #94a3b8;
+    color: #64748b;
     font-weight: 500;
     transition: var(--transition-smooth);
     text-decoration: none;
 }
 
 .navLink:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary);
+    background: #fef2f2;
     transform: translateX(4px);
 }
 
@@ -84,20 +83,20 @@
     gap: 14px;
     padding: 14px 18px;
     border-radius: 14px;
-    color: #fda4af;
-    background: rgba(225, 29, 72, 0.05);
+    color: #ef4444;
+    background: #fef2f2;
     font-weight: 600;
     transition: var(--transition-bounce);
     cursor: pointer;
-    border: 1px solid rgba(225, 29, 72, 0.1);
+    border: 1px solid #fee2e2;
     width: 100%;
 }
 
 .logoutBtn:hover {
-    background: var(--crimson);
+    background: var(--primary);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(225, 29, 72, 0.3);
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.2);
 }
 
 .mainContent {
@@ -105,7 +104,7 @@
     display: flex;
     flex-direction: column;
     padding: 0;
-    background: radial-gradient(circle at top right, rgba(147, 51, 234, 0.05), transparent 40%);
+    background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.03), transparent 40%);
 }
 
 .topBar {
@@ -114,9 +113,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -159,6 +158,39 @@
     margin: 0 auto;
 }
 
+.mobileMenuBtn {
+    display: none;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1100;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: var(--primary);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.mobileMenuBtn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.mobileOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    backdrop-filter: blur(4px);
+}
+
 @media (max-width: 1100px) {
     .sidebar { width: 90px; padding: 2.5rem 1rem; }
     .logo span, .navLink span, .logoutBtn span, .userProfile span { display: none; }
@@ -166,8 +198,62 @@
     .navLink { justify-content: center; padding: 14px; }
     .logoutBtn { justify-content: center; padding: 14px; }
     .userProfile { padding: 6px; }
+    .pageContent { padding: 30px; }
 }
 
 @media (max-width: 768px) {
-    .sidebar { display: none; }
+    .mobileMenuBtn {
+        display: flex;
+    }
+
+    .mobileOverlay {
+        display: block;
+    }
+
+    .sidebar {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        z-index: 1050;
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 2.5rem 1.5rem;
+        background: #ffffff;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar.sidebarOpen {
+        transform: translateX(0);
+    }
+
+    .logo span, .navLink span, .logoutBtn span {
+        display: inline;
+    }
+
+    .logo { justify-content: flex-start; padding: 0 0.75rem; }
+    .navLink { justify-content: flex-start; padding: 12px 18px; }
+    .logoutBtn { justify-content: flex-start; padding: 14px 18px; }
+
+    .topBar {
+        padding: 0 20px 0 70px;
+        height: 64px;
+    }
+
+    .pageContent {
+        padding: 20px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageContent {
+        padding: 16px 12px;
+    }
+
+    .topBar {
+        padding: 0 12px 0 64px;
+        height: 56px;
+    }
 }
